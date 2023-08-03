@@ -1,0 +1,26 @@
+Question --> https://leetcode.com/problems/sum-root-to-leaf-numbers/
+
+class Solution {
+    public int sumNumbers(TreeNode root) {
+       List<String> list=new ArrayList<String>();
+        list=inorder(root,list,"");
+        int sum=0;
+        System.out.println(list);
+        for(String a:list){
+            sum+=Integer.parseInt(a);
+        }
+        return sum;
+    } 
+    public List<String> inorder(TreeNode root,List<String> list,String str){
+        if(root==null){
+            return list;
+        }
+        str=str+root.val;
+        if(root.left==null && root.right==null){
+            list.add(str);
+        }
+        inorder(root.left,list,str);
+        inorder(root.right,list,str);
+        return list;
+    }
+}
